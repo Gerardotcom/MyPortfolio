@@ -8,20 +8,16 @@ interface NavbarProps {
 }
 
 export default function Navbar({ sections }: NavbarProps) {
-    if (!sections || sections.length === 0) return null; // Asegurarse de que 'sections' esté disponible
+  if (!sections || sections.length === 0) return null;
 
-    const [activeSection, setActiveSection] = useState(sections?.[0] || "Home");
-    const [darkMode, setDarkMode] = useState(false);
-    const [isMounted, setIsMounted] = useState(false);
+  const [activeSection, setActiveSection] = useState(sections?.[0] || "Home");
+  const [darkMode, setDarkMode] = useState(false);
 
-    // Sincronizar el tema entre SSR y cliente
-    useEffect(() => {
-        setIsMounted(true); // Marcar el componente como montado en el cliente
-        const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setDarkMode(prefersDarkMode);
-        document.documentElement.classList.toggle('dark', prefersDarkMode);
-    }, []);
-
+  useEffect(() => {
+    const prefersDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setDarkMode(prefersDarkMode);
+    document.documentElement.classList.toggle('dark', prefersDarkMode);
+  }, []);
     const toggleDarkMode = () => {
         setDarkMode(!darkMode);
         document.documentElement.classList.toggle('dark', !darkMode);
@@ -67,7 +63,7 @@ export default function Navbar({ sections }: NavbarProps) {
             <div className="h-full w-fit flex justify-between items-center space-x-6">
                 {/* Contenedor Izquierdo: Logo o Imagen */}
                 <a href="https://www.linkedin.com/in/gerardotcom/" target="_blank" rel="noopener noreferrer">
-                    <div className=" w-[2.5rem] h-[2.5rem] bg-[url(/pictures/profile_picture.jpg)] bg-cover border border-white dark:border-slate-100/60 rounded-full">
+                    <div className=" w-10 h-10 bg-[url(/pictures/profile_picture.jpg)] bg-cover border border-white dark:border-slate-100/60 rounded-full">
                     </div>
                 </a>
 
